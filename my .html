@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Krylo-60 | Official Pro Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #9d50bb;
+            --accent: #00ff88;
+            --bg-dark: #020408;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(157, 80, 187, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 210, 255, 0.12) 0px, transparent 50%);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .nav-logo, .stat-number { font-family: 'Orbitron', sans-serif; text-transform: uppercase; }
+
+        /* HEADER */
+        header {
+            padding: 1rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(2, 4, 8, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-logo { font-size: 1.4rem; font-weight: 700; color: var(--primary); letter-spacing: 3px; }
+        nav a { margin-left: 25px; color: #94a3b8; text-decoration: none; font-size: 0.85rem; transition: 0.3s; }
+        nav a:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+
+        /* HERO & LIVE INDICATOR */
+        .hero {
+            height: 75vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .live-tag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 255, 136, 0.1);
+            padding: 5px 15px;
+            border-radius: 50px;
+            color: var(--accent);
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            border: 1px solid var(--accent);
+        }
+
+        .pulse { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(3); opacity: 0; } }
+
+        .hero h1 { 
+            font-size: clamp(3rem, 10vw, 5rem); 
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* STATS BAR */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1100px;
+            margin: -60px auto 60px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .stat-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            transition: 0.4s;
+        }
+
+        .stat-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .stat-number { font-size: 2.2rem; color: #fff; margin-bottom: 5px; }
+
+        /* WALL OF FAME */
+        .wall-of-fame {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .supporter-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .supporter-card:hover { background: rgba(0, 210, 255, 0.05); transform: scale(1.05); }
+        .supporter-name { display: block; font-weight: 800; color: var(--primary); }
+        .supporter-rank { font-size: 0.7rem; color: var(--accent); text-transform: uppercase; }
+
+        /* TIMELINE */
+        .timeline { border-left: 2px solid var(--glass-border); margin: 40px 0; padding-left: 30px; position: relative; }
+        .timeline-item { position: relative; margin-bottom: 40px; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -39px; top: 5px;
+            width: 16px; height: 16px; background: var(--bg-dark);
+            border: 3px solid var(--primary); border-radius: 50%;
+        }
+
+        /* BUTTONS */
+        .btn-main {
+            padding: 16px 40px;
+            background: var(--primary);
+            color: #000;
+            border-radius: 50px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+        }
+
+        section { padding: 80px 10%; }
+        .card { background: var(--glass); border: 1px solid var(--glass-border); padding: 40px; border-radius: 24px; }
+
+        footer { text-align: center; padding: 40px; border-top: 1px solid var(--glass-border); color: #475569; font-size: 0.8rem; }
+
+        @media (max-width: 768px) { nav { display: none; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav-logo">KRYLO-60</div>
+    <nav>
+        <a href="#about">Journey</a>
+        <a href="#stats">Live Stats</a>
+        <a href="#wall">Wall of Fame</a>
+        <a href="#contact">Discord</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="live-tag"><div class="pulse"></div> LIVE FEED ACTIVE</div>
+    <h1>KRYLO-60</h1>
+    <p style="color: #94a3b8; margin-bottom: 2rem; font-size: 1.1rem;">Roblox Legend • Content Architect</p>
+    <a href="https://www.youtube.com/@Krylo-60?sub_confirmation=1" class="btn-main">SUBSCRIBE FOR UPDATES</a>
+</section>
+
+<div class="stats-container" id="stats">
+    <div class="stat-card">
+        <span class="stat-number counter" data-target="1250">0</span>
+        <span style="color: #64748b; font-size: 0.7rem; font-weight: bold;">SUBSCRIBERS</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-number counter" data-target="86">0</span>
+        <span style="color: #64748b; font-size: 0.7rem; font-weight: bold;">UPLOADS</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-number counter" data-target="215000">0</span>
+        <span style="color: #64748b; font-size: 0.7rem; font-weight: bold;">TOTAL VIEWS</span>
+    </div>
+</div>
+
+<section id="about">
+    <div class="card">
+        <h2 style="color: var(--primary); margin-bottom: 30px;">The Journey</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3 style="font-size: 1rem;">The First Upload</h3>
+                <p style="color: #94a3b8; font-size: 0.9rem;">Where the dream began. Focused on mechanics and tutorials.</p>
+            </div>
+            <div class="timeline-item">
+                <h3 style="font-size: 1rem;">The Discord Expansion</h3>
+                <p style="color: #94a3b8; font-size: 0.9rem;">Moving beyond YouTube to build a 24/7 community hub.</p>
+            </div>
+            <div class="timeline-item">
+                <h3 style="font-size: 1rem;">1K Subs Milestone</h3>
+                <p style="color: #94a3b8; font-size: 0.9rem;">Certified Roblox content creator. The grind never stops.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="wall">
+    <div class="card" style="background: linear-gradient(to bottom right, rgba(255, 215, 0, 0.05), transparent);">
+        <h2 style="color: var(--accent);">Wall of Fame</h2>
+        <p style="color: #64748b;">Top Supporters & Legendary Community Members</p>
+        <div class="wall-of-fame">
+            <div class="supporter-card">
+                <span class="supporter-name">Player_One</span>
+                <span class="supporter-rank">Gold Tier</span>
+            </div>
+            <div class="supporter-card">
+                <span class="supporter-name">Nexus_Dev</span>
+                <span class="supporter-rank">OG Squad</span>
+            </div>
+            <div class="supporter-card">
+                <span class="supporter-name">RobloxKing</span>
+                <span class="supporter-rank">Supporter</span>
+            </div>
+            <div class="supporter-card">
+                <span class="supporter-name">You?</span>
+                <span class="supporter-rank">Join Today</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="card" style="background: rgba(88, 101, 242, 0.05); border-color: rgba(88, 101, 242, 0.2);">
+        <h2 style="color: #5865F2; margin-bottom: 25px;">Live Community</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <div>
+                <p style="margin-bottom: 20px;">Jump into our real-time Discord to see who's online, join voice channels, and chat with Krylo-60 directly.</p>
+                <a href="https://discord.gg/QZ3KfPsH4Y" style="color: #5865F2; font-weight: bold; text-decoration: none;">Launch Discord ➔</a>
+            </div>
+            <div class="discord-widget">
+                <iframe src="https://discord.com/widget?id=1420991845546332162&theme=dark" width="100%" height="300" frameborder="0" sandbox="allow-popups allow-same-origin allow-scripts"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 KRYLO-60 • AUTHENTICATED ACCESS
+</footer>
+
+<script>
+    // Live Counter Logic
+    const counters = document.querySelectorAll('.counter');
+    const speed = 100;
+
+    const animate = () => {
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText.replace(/,/g, '');
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc).toLocaleString();
+                    setTimeout(updateCount, 20);
+                } else {
+                    counter.innerText = target.toLocaleString();
+                    if(target >= 1000) counter.innerText += "+";
+                }
+            };
+            updateCount();
+        });
+    }
+
+    // Run when scrolled to
+    const observer = new IntersectionObserver((entries) => {
+        if(entries[0].isIntersecting) animate();
+    }, { threshold: 0.5 });
+
+    observer.observe(document.querySelector('#stats'));
+</script>
+
+</body>
+</html>
